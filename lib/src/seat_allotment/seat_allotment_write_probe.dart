@@ -83,7 +83,7 @@ abstract final class SeatAllotmentWriteProbe {
           step: 'seat_allotment_datasets',
         )}\n\n'
             'CMS probe passed but seat allotment rules are missing on Firebase. '
-            'Deploy from neetprep_flutter:\n'
+            'Deploy from jeeprep_flutter:\n'
             'firebase deploy --only firestore:rules';
       }
       return 'Firestore error (${e.code}): ${e.message}';

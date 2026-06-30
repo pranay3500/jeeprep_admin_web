@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -83,8 +83,8 @@ class WebinarsCmsPage extends StatelessWidget {
         SnackBar(
           content: Text(
             published
-                ? 'Webinar enabled — visible in the mobile app.'
-                : 'Webinar disabled — hidden from the mobile app.',
+                ? 'Webinar enabled â€” visible in the mobile app.'
+                : 'Webinar disabled â€” hidden from the mobile app.',
           ),
         ),
       );
@@ -106,7 +106,7 @@ class WebinarsCmsPage extends StatelessWidget {
       builder: (ctx) => AlertDialog(
         title: const Text('Disable webinar?'),
         content: Text(
-          'Hide “$title” from the mobile app? '
+          'Hide â€œ$titleâ€ from the mobile app? '
           'You can re-enable it later from this list.',
         ),
         actions: [
@@ -135,7 +135,7 @@ class WebinarsCmsPage extends StatelessWidget {
       builder: (ctx) => AlertDialog(
         title: const Text('Delete webinar?'),
         content: Text(
-          'Permanently delete “$title”? This cannot be undone. '
+          'Permanently delete â€œ$titleâ€? This cannot be undone. '
           'The mobile app will stop showing this webinar.',
         ),
         actions: [
@@ -187,7 +187,7 @@ class WebinarsCmsPage extends StatelessWidget {
     final title = TextEditingController(text: _text(data['title'], ''));
     final subtitle = TextEditingController(text: _text(data['subtitle'], ''));
     final hostLabel =
-        TextEditingController(text: _text(data['hostLabel'], 'TestprepKart NEET Team'));
+        TextEditingController(text: _text(data['hostLabel'], 'TestprepKart JEE Team'));
     final highlights = TextEditingController(
       text: _linesText(data['topicHighlights']),
     );
@@ -260,7 +260,7 @@ class WebinarsCmsPage extends StatelessWidget {
                     controller: thumbnailUrl,
                     decoration: const InputDecoration(
                       labelText: 'Home card thumbnail URL',
-                      hintText: 'https://… image shown on mobile dashboard',
+                      hintText: 'https://â€¦ image shown on mobile dashboard',
                     ),
                   ),
                   TextField(
@@ -356,7 +356,7 @@ class WebinarsCmsPage extends StatelessWidget {
                     subtitle: Text(
                       isPublished
                           ? 'Shown on home, webinar list, and detail pages.'
-                          : 'Disabled — hidden from app users until re-enabled.',
+                          : 'Disabled â€” hidden from app users until re-enabled.',
                     ),
                   ),
                   SwitchListTile(
@@ -773,12 +773,12 @@ Map<String, dynamic> _defaultWebinarPayload() {
   final scheduledUtc = WebinarScheduleTimezone.nextSunday8pmIstUtc();
   return {
     'isPublished': true,
-    'title': 'NEET 2027 Strategy for NRI Families',
+    'title': 'JEE 2027 Strategy for NRI Families',
     'subtitle': 'Live session with TestprepKart mentors',
-    'hostLabel': 'TestprepKart NEET Team',
+    'hostLabel': 'TestprepKart JEE Team',
     'topicHighlights': [
-      'NEET 2027 timeline for Class 11 & 12 NRI students',
-      'How to balance school abroad with NEET prep',
+      'JEE 2027 timeline for Class 11 & 12 NRI students',
+      'How to balance school abroad with JEE prep',
       'Q&A on counselling, fees, and study plans',
     ],
     'timezoneDisplay': WebinarScheduleTimezone.usTimezoneDisplay(scheduledUtc),
@@ -787,7 +787,7 @@ Map<String, dynamic> _defaultWebinarPayload() {
     'status': 'upcoming',
     'joinUrl': '',
     'descriptionHtml':
-        '<p>Join our academic team for a focused webinar on NEET preparation while studying outside India.</p>',
+        '<p>Join our academic team for a focused webinar on JEE preparation while studying outside India.</p>',
     'thumbnailImageUrl':
         'https://images.unsplash.com/photo-1571260899304-425eee4c353f?w=800&q=80',
     'youtubePromoId': '',

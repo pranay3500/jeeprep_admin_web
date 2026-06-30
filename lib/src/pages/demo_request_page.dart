@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../services/firestore_db.dart';
@@ -41,7 +41,7 @@ class _DemoRequestPageState extends State<DemoRequestPage> {
       {
         'title': 'Meet the academic team',
         'description':
-            'The session reviews preparation level, subject comfort, and current NEET readiness.',
+            'The session reviews preparation level, subject comfort, and current JEE readiness.',
         'iconKey': 'analysis',
         'colorKey': 'purple',
         'order': 2,
@@ -59,7 +59,7 @@ class _DemoRequestPageState extends State<DemoRequestPage> {
     ],
     'videos': [
       {
-        'title': 'How NEET score analysis works',
+        'title': 'How JEE score analysis works',
         'url': 'https://www.youtube.com/watch?v=RtAPBZFLY7s',
         'order': 1,
         'isPublished': true,
@@ -295,7 +295,7 @@ class _DemoRequestPageState extends State<DemoRequestPage> {
                           const SizedBox(width: 8),
                           Text(
                             hasPending
-                                ? 'Demo Requests · new'
+                                ? 'Demo Requests Â· new'
                                 : 'Demo Requests',
                           ),
                         ],
@@ -349,7 +349,7 @@ class _DemoRequestPageState extends State<DemoRequestPage> {
                           ),
                           const SizedBox(height: 6),
                           const Text(
-                            'Controls Expected NEET Score hero video, How It Works, sample analysis report PDFs, bottom video tiles, and Dashboard NRIs Alert slider videos in the mobile app.',
+                            'Controls Expected JEE Score hero video, How It Works, sample analysis report PDFs, bottom video tiles, and Dashboard NRIs Alert slider videos in the mobile app.',
                           ),
                           const SizedBox(height: 8),
                           Text('Doc path: demo_request_config/expected_score'),
@@ -399,7 +399,7 @@ class _DemoRequestPageState extends State<DemoRequestPage> {
                     decoration: const InputDecoration(
                       labelText: 'Sample analysis report PDFs',
                       helperText:
-                          'Expected NEET Score → Sample reports (tap opens in-app PDF). Format: title | HTTPS PDF URL. Up to 3 rows shown; leave URL empty to use bundled placeholder in app.',
+                          'Expected JEE Score â†’ Sample reports (tap opens in-app PDF). Format: title | HTTPS PDF URL. Up to 3 rows shown; leave URL empty to use bundled placeholder in app.',
                       border: OutlineInputBorder(),
                       alignLabelWithHint: true,
                     ),

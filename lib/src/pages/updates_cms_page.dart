@@ -1,7 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../jee_product_constants.dart';
 import '../services/firestore_db.dart';
 import '../utils/update_read_time.dart';
 import '../widgets/admin_dialog_save_actions.dart';
@@ -91,7 +92,11 @@ class UpdatesCmsPage extends StatelessWidget {
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setState) => AlertDialog(
-          title: Text(doc == null ? 'Create NEET Pulse Update' : 'Edit Update'),
+          title: Text(
+            doc == null
+                ? 'Create ${JeeProductConstants.updatesBrandLabel} article'
+                : 'Edit Update',
+          ),
           content: SizedBox(
             width: 860,
             child: SingleChildScrollView(
@@ -100,7 +105,8 @@ class UpdatesCmsPage extends StatelessWidget {
                 children: [
                   _SectionHeader(
                     title: 'Update Content',
-                    subtitle: 'This feeds the NEET Pulse cards and full view.',
+                    subtitle:
+                        'This feeds the ${JeeProductConstants.updatesBrandLabel} cards and full view.',
                   ),
                   TextField(
                     controller: title,
@@ -193,7 +199,7 @@ class UpdatesCmsPage extends StatelessWidget {
                           controller: tags,
                           decoration: const InputDecoration(
                             labelText: 'Tags',
-                            helperText: 'Comma separated: neet-2027, nta',
+                            helperText: 'Comma separated: jee-2027, nta',
                           ),
                         ),
                       ),
@@ -667,7 +673,7 @@ class UpdatesCmsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'NEET Pulse Updates',
+                      JeeProductConstants.updatesBrandLabel,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w800,

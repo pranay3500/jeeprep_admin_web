@@ -1,11 +1,11 @@
 {
-    "name": "neetprep_admin_web",
-    "short_name": "neetprep_admin_web",
+    "name": "JEE Prep Admin",
+    "short_name": "JEE Admin",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#22C55E",
+    "theme_color": "#22C55E",
+    "description": "TestprepKart JEE Prep admin CMS",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

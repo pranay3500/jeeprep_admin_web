@@ -9,4 +9,4 @@ alwaysApply: true
 - **Source of truth in repo:** `tool/flutter_sdk.path` (admin web and mobile app both have a copy)
 - **PowerShell:** dot-source `tool/flutter_env.ps1` then use `Invoke-Flutter` / `Invoke-Dart`, or run `tool/run_admin_web.ps1` for admin web
 - **Do not** ask the user for the SDK path again; read `tool/flutter_sdk.path` if a terminal lacks `flutter` on PATH
-- Mobile Android already uses this path in `neetprep_flutter/android/local.properties` (`flutter.sdk`)
+- Mobile Android already uses this path in `jeeprep_flutter/android/local.properties` (`flutter.sdk`)

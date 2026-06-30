@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,27 @@ class _UsersPageState extends State<UsersPage> {
       FirestoreDb.instance.collection('users');
 
   bool get _isOwner => AdminSession.isOwner;
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_markNewUsersSeen());
+  }
+
+  Future<void> _markNewUsersSeen() async {
+    try {
+      final snap =
+          await _users.where('adminUnread', isEqualTo: true).limit(500).get();
+      if (snap.docs.isEmpty) return;
+      final batch = FirestoreDb.instance.batch();
+      for (final doc in snap.docs) {
+        batch.update(doc.reference, {'adminUnread': false});
+      }
+      await batch.commit();
+    } catch (e) {
+      debugPrint('Failed to mark new users seen: $e');
+    }
+  }
 
   static const _compactIconConstraints = BoxConstraints(
     minWidth: 32,
@@ -783,7 +806,13 @@ class _UsersPageState extends State<UsersPage> {
                                     final flag = _flagEmojiFromIso2(iso2);
                                     final role = (u['role'] ?? 'user').toString();
                                     final email = (u['email'] ?? '-').toString();
+                                    final isNewSignup = u['adminUnread'] == true;
                                     return DataRow(
+                                      color: WidgetStateProperty.resolveWith(
+                                        (_) => isNewSignup
+                                            ? const Color(0xFFFFF8E1)
+                                            : Colors.transparent,
+                                      ),
                                       cells: [
                                         DataCell(
                                           _selectableCell(_fmtDateTable(u['createdAt'])),

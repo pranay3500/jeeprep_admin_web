@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../firebase_options.dart';
 import '../services/admin_auth_eligibility.dart';
 import '../services/admin_login_security_service.dart';
 import '../widgets/admin_captcha_field.dart';
@@ -121,7 +122,14 @@ class _SignInPageState extends State<SignInPage> {
           isError: true,
         );
       } else {
-        _showMessage(e.message ?? 'Sign-in failed.', isError: true);
+        final code = e.code.trim();
+        final msg = (e.message ?? '').trim();
+        _showMessage(
+          msg.isNotEmpty && msg.toLowerCase() != 'error'
+              ? msg
+              : 'Sign-in failed ($code). Check Firebase project matches jee-prep-app-16bd5 and Email/Password is enabled.',
+          isError: true,
+        );
       }
     } catch (e) {
       _showMessage('Sign-in failed: $e', isError: true);
@@ -278,6 +286,15 @@ class _SignInPageState extends State<SignInPage> {
                         child: TextButton(
                           onPressed: _loading ? null : _openForgotPassword,
                           child: const Text('Forgot password?'),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'Firebase project: ${DefaultFirebaseOptions.web.projectId}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey.shade600,
                         ),
                       ),
                     ],

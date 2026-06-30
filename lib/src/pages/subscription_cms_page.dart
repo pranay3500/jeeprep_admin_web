@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../services/firestore_db.dart';
@@ -48,12 +48,12 @@ class _SubscriptionCmsPageState extends State<SubscriptionCmsPage> {
       {
         'icon': 'library',
         'title': 'Full Content Library',
-        'description': 'Access premium NEET resources and strategy modules.',
+        'description': 'Access premium JEE resources and strategy modules.',
       },
       {
         'icon': 'analytics',
         'title': 'Advanced Score Analysis',
-        'description': 'In-depth personalized reports for your NEET preparation.',
+        'description': 'In-depth personalized reports for your JEE preparation.',
       },
     ],
   };

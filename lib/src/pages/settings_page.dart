@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -105,7 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _masterEnabled = data['masterEnabled'] == true;
     final savedProvider = _text(data['provider'], 'SMTP');
     _provider = _providerOptions.contains(savedProvider) ? savedProvider : 'SMTP';
-    _senderName.text = _text(data['senderName'], 'TestprepKart NEET');
+    _senderName.text = _text(data['senderName'], 'TestprepKart JEE');
     _fromEmail.text = _text(data['fromEmail'], '');
     _replyToEmail.text = _text(data['replyToEmail'], '');
     _adminRecipients.text = _listText(data['adminRecipients']);
@@ -214,7 +214,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const Text(
                     'Host the Node relay from deploy/email_relay on Satlas (same server). '
-                    'Default: https://neetappadmin.satlas.org/api/send-email',
+                    'Default: https://jeeappadmin.satlas.org/api/send-email',
                     style: TextStyle(fontSize: 12, color: Colors.black54),
                   ),
                 ],
@@ -379,7 +379,7 @@ class _SettingsPageState extends State<SettingsPage> {
         if (!_supportLoaded) {
           _supportLoaded = true;
           _contactEmail.text =
-              _text(data['contactEmail'], 'neetapp@testprepkart.in');
+              _text(data['contactEmail'], 'jeeapp@testprepkart.in');
           _whatsappNumber.text =
               _text(data['whatsappNumber'], '+15107069331');
           _websiteUrl.text =
@@ -543,7 +543,7 @@ class _SettingsPageState extends State<SettingsPage> {
           _aboutVersion.text = _text(data['version'], '1.0.0');
           _aboutBlurb.text = _text(
             data['blurb'],
-            'TestprepKart NEET Prep helps NRI students and parents track NEET preparation, admissions, courses, counselling, and important updates.',
+            'TestprepKart JEE Prep helps NRI students and parents track JEE preparation, admissions, courses, counselling, and important updates.',
           );
           _aboutWebsiteUrl.text =
               _text(data['websiteUrl'], 'https://www.testprepkart.com');
@@ -567,11 +567,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'These fields publish directly to Profile > About NEET Prep in the mobile app. Privacy Policy and Terms open as in-app pages.',
+              'These fields publish directly to Profile > About JEE Prep in the mobile app. Privacy Policy and Terms open as in-app pages.',
             ),
             const SizedBox(height: 18),
             _section(
-              title: 'About NEET Prep',
+              title: 'About JEE Prep',
               children: [
                 _row([
                   _field(_aboutVersion, 'App Version'),
@@ -670,7 +670,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Controls free vs premium for the mobile Content Library: tier defaults, locked reading pages (blur + CTA), and per-node overrides. Stored at cms_content_library/main. Operations can also set per-node Auto / Lock / Free toggles on Content Library → Imported Hierarchy (same lists below).',
+              'Controls free vs premium for the mobile Content Library: tier defaults, locked reading pages (blur + CTA), and per-node overrides. Stored at cms_content_library/main. Operations can also set per-node Auto / Lock / Free toggles on Content Library â†’ Imported Hierarchy (same lists below).',
             ),
             const SizedBox(height: 18),
             Card(
@@ -714,12 +714,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 _row([
                   _field(
                     _previewFraction,
-                    'Preview height when locked (0.12–0.9)',
+                    'Preview height when locked (0.12â€“0.9)',
                     keyboardType: TextInputType.number,
                   ),
                   _field(
                     _freeUnitIndexMax,
-                    'Free unit index max (units with index ≤ this are listed)',
+                    'Free unit index max (units with index â‰¤ this are listed)',
                     keyboardType: TextInputType.number,
                   ),
                 ]),
@@ -729,7 +729,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   keyboardType: TextInputType.number,
                 ),
                 const Text(
-                  'Defaults match the previous app behavior: units 1–3 and the first three chapters/topics under a free unit.',
+                  'Defaults match the previous app behavior: units 1â€“3 and the first three chapters/topics under a free unit.',
                   style: TextStyle(fontSize: 12, color: Colors.black54),
                 ),
               ],
@@ -869,13 +869,13 @@ class _SettingsPageState extends State<SettingsPage> {
       _smtpPort.text = '465';
       _smtpSsl = true;
       if (_smtpUsername.text.trim().isEmpty) {
-        _smtpUsername.text = 'neetapp@testprepkart.in';
+        _smtpUsername.text = 'jeeapp@testprepkart.in';
       }
       if (_fromEmail.text.trim().isEmpty) {
-        _fromEmail.text = 'neetapp@testprepkart.in';
+        _fromEmail.text = 'jeeapp@testprepkart.in';
       }
       if (_replyToEmail.text.trim().isEmpty) {
-        _replyToEmail.text = 'neetapp@testprepkart.in';
+        _replyToEmail.text = 'jeeapp@testprepkart.in';
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
@@ -1226,7 +1226,7 @@ const _providerOptions = {
 
 const _triggerLabels = {
   'userRegistered': 'New app user registered (welcome email)',
-  'updatePublished': 'NEET Pulse update published',
+  'updatePublished': 'JEE Updates article published',
   'breakingUpdate': 'Breaking / urgent update published',
   'demoRequestCreated': 'Expected Score demo request created',
   'analysisSessionStatusChanged': 'Analysis session approved/rescheduled/cancelled',
@@ -1274,9 +1274,9 @@ const _sampleFaqs = [
     'category': 'NRI Parents',
   },
   {
-    'question': 'Where can I see NEET updates and deadlines?',
+    'question': 'Where can I see JEE updates and deadlines?',
     'answer':
-        'Open NEET Pulse from the home page to view exam updates, deadlines, admission reminders, and important notices.',
+        'Open JEE Updates from the home page to view exam news, deadlines, admission reminders, and important notices.',
     'category': 'Updates',
   },
   {
@@ -1290,7 +1290,7 @@ const _sampleFaqs = [
 const _defaultPrivacyPolicyContent = '''
 Privacy Policy
 
-TestprepKart NEET Prep collects only the information needed to provide app access, counselling support, course inquiries, notifications, and learning progress features.
+TestprepKart JEE Prep collects only the information needed to provide app access, counselling support, course inquiries, notifications, and learning progress features.
 
 Information We Use
 - Account details such as name, email, phone number, class, country, and student profile.
@@ -1298,7 +1298,7 @@ Information We Use
 - Device notification tokens when you enable phone notifications.
 
 How We Use Information
-- To provide NEET preparation, admission guidance, support responses, reminders, and app notifications.
+- To provide JEE preparation, admission guidance, support responses, reminders, and app notifications.
 - To improve app reliability and personalize the student or parent experience.
 - To contact users when they submit an inquiry, demo request, support message, or opt in to updates.
 
@@ -1308,7 +1308,7 @@ We do not sell personal data. You can edit and publish this policy from Admin Se
 const _defaultTermsOfServiceContent = '''
 Terms of Service
 
-By using TestprepKart NEET Prep, you agree to use the app for lawful educational and admission-support purposes.
+By using TestprepKart JEE Prep, you agree to use the app for lawful educational and admission-support purposes.
 
 User Responsibilities
 - Keep your login details secure.
@@ -1354,12 +1354,12 @@ String _defaultSubject(String triggerKey, String audience) {
   switch (triggerKey) {
     case 'updatePublished':
       return isAdmin
-          ? 'NEET Pulse update published: {updateTitle}'
+          ? 'JEE Updates article published: {updateTitle}'
           : '{updateTitle}';
     case 'breakingUpdate':
       return isAdmin
-          ? 'Breaking NEET alert sent: {updateTitle}'
-          : 'Important NEET update: {updateTitle}';
+          ? 'Breaking JEE alert sent: {updateTitle}'
+          : 'Important JEE update: {updateTitle}';
     case 'demoRequestCreated':
       return isAdmin
           ? 'New expected score demo request from {studentName}'
@@ -1442,12 +1442,12 @@ String _defaultTemplateBody(String triggerKey, String audience) {
   switch (triggerKey) {
     case 'updatePublished':
       return isAdmin
-          ? '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A NEET Pulse update has been published.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>Update:</strong> {updateTitle}</p>'
-          : '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A new NEET Pulse update is available for you.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>{updateTitle}</strong></p>';
+          ? '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A JEE Updates article has been published.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>Update:</strong> {updateTitle}</p>'
+          : '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A new JEE Updates article is available for you.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>{updateTitle}</strong></p>';
     case 'breakingUpdate':
       return isAdmin
-          ? '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A breaking or urgent NEET update was sent.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>Update:</strong> {updateTitle}</p>'
-          : '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">There is an important NEET update that may need your attention.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>{updateTitle}</strong></p>';
+          ? '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A breaking or urgent JEE update was sent.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>Update:</strong> {updateTitle}</p>'
+          : '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">There is an important JEE update that may need your attention.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>{updateTitle}</strong></p>';
     case 'demoRequestCreated':
       return isAdmin
           ? '<p style="margin:0 0 12px;font-size:15px;line-height:1.6;">A new expected score demo request has been submitted.</p><p style="margin:0;font-size:15px;line-height:1.6;"><strong>Student:</strong> {studentName}<br><strong>Email:</strong> {email}</p>'
@@ -1519,14 +1519,14 @@ class _SmtpHostingerHint extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'Your Hostinger guide shows IMAP and SMTP. This admin panel only sends email, '
-                'so choose provider SMTP and use the outgoing server — not IMAP.\n\n'
+                'so choose provider SMTP and use the outgoing server â€” not IMAP.\n\n'
                 'Suggested values:\n'
-                '• SMTP Host: smtp.hostinger.com\n'
-                '• Port: 465 (SSL on) or 587 (SSL/TLS on)\n'
-                '• Username: full address (e.g. neetapp@testprepkart.in)\n'
-                '• From Email: same mailbox address\n'
-                '• Password: mailbox password from Hostinger\n\n'
-                'IMAP (imap.hostinger.com) is only for reading mail in Outlook/Gmail — ignore it here.',
+                'â€¢ SMTP Host: smtp.hostinger.com\n'
+                'â€¢ Port: 465 (SSL on) or 587 (SSL/TLS on)\n'
+                'â€¢ Username: full address (e.g. jeeapp@testprepkart.in)\n'
+                'â€¢ From Email: same mailbox address\n'
+                'â€¢ Password: mailbox password from Hostinger\n\n'
+                'IMAP (imap.hostinger.com) is only for reading mail in Outlook/Gmail â€” ignore it here.',
                 style: TextStyle(fontSize: 12.5, height: 1.45),
               ),
               const SizedBox(height: 8),

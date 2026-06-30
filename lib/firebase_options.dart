@@ -5,15 +5,6 @@ import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -53,11 +44,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD49aU-jBi91nfgM9zbMpPRWrKTsl7tkro',
-    appId: '1:793601317869:web:bbfcfd52486829dccae5e4',
-    messagingSenderId: '793601317869',
-    projectId: 'neet-prep-app-fc7fa',
-    authDomain: 'neet-prep-app-fc7fa.firebaseapp.com',
-    storageBucket: 'neet-prep-app-fc7fa.firebasestorage.app',
+    apiKey: 'AIzaSyBuILaChyb9lggAL16z2uaQBgerxt9dqyE',
+    appId: '1:616476778386:web:b36f9dd294a127e5f1eb4b',
+    messagingSenderId: '616476778386',
+    projectId: 'jee-prep-app-16bd5',
+    authDomain: 'jee-prep-app-16bd5.firebaseapp.com',
+    storageBucket: 'jee-prep-app-16bd5.firebasestorage.app',
+    measurementId: 'G-T6C0RYDQPL',
   );
 }

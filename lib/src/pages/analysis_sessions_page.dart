@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -176,7 +176,7 @@ class AnalysisSessionsPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'Session updated. User has no email on file — in-app notification only.',
+            'Session updated. User has no email on file â€” in-app notification only.',
           ),
         ),
       );
@@ -193,9 +193,9 @@ class AnalysisSessionsPage extends StatelessWidget {
       nextStatus: 'confirmed',
       notificationTitle: 'Analysis session confirmed',
       notificationDescription:
-          'Your Expected NEET Score analysis session has been confirmed.',
+          'Your Expected JEE Score analysis session has been confirmed.',
       notificationLongContent:
-          'Your analysis session request has been approved by the TestprepKart academics team. Please check the Expected NEET Score page for the confirmed session details.',
+          'Your analysis session request has been approved by the TestprepKart academics team. Please check the Expected JEE Score page for the confirmed session details.',
       notificationColor: '#2E7D32',
     );
     if (context.mounted) {
@@ -384,9 +384,9 @@ class AnalysisSessionsPage extends StatelessWidget {
                     subjects: selectedSubjects.toList(),
                     notificationTitle: 'Analysis session rescheduled',
                     notificationDescription:
-                        'Your Expected NEET Score analysis session has been rescheduled.',
+                        'Your Expected JEE Score analysis session has been rescheduled.',
                     notificationLongContent:
-                        'Your analysis session date, time, or subjects were updated by the TestprepKart academics team. Please check the Expected NEET Score page for the latest details.',
+                        'Your analysis session date, time, or subjects were updated by the TestprepKart academics team. Please check the Expected JEE Score page for the latest details.',
                     notificationColor: '#EF6C00',
                   );
                   return true;
@@ -430,9 +430,9 @@ class AnalysisSessionsPage extends StatelessWidget {
                 adminNotes: notes.text,
                 notificationTitle: 'Analysis session cancelled',
                 notificationDescription:
-                    'Your Expected NEET Score analysis session has been cancelled.',
+                    'Your Expected JEE Score analysis session has been cancelled.',
                 notificationLongContent: notes.text.trim().isEmpty
-                    ? 'Your analysis session was cancelled by the TestprepKart academics team. Please check the Expected NEET Score page for the latest status.'
+                    ? 'Your analysis session was cancelled by the TestprepKart academics team. Please check the Expected JEE Score page for the latest status.'
                     : notes.text.trim(),
                 notificationColor: '#C62828',
               );
@@ -530,9 +530,9 @@ class AnalysisSessionsPage extends StatelessWidget {
                 expectedScoreMax: parsedMax,
                 notificationTitle: 'Analysis session report ready',
                 notificationDescription:
-                    'Your Expected NEET Score analysis report has been updated.',
+                    'Your Expected JEE Score analysis report has been updated.',
                 notificationLongContent:
-                    'Your expected score range and analysis notes are now available in the Expected NEET Score page.',
+                    'Your expected score range and analysis notes are now available in the Expected JEE Score page.',
                 notificationColor: '#1565C0',
               );
               return true;

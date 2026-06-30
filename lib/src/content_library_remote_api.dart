@@ -2,7 +2,7 @@
 ///
 /// **API 1 — hierarchy / tree** (mobile + admin importer):
 /// Full URL example:
-/// `https://www.testprepkart.com/self-study/api/tree/content/neet/neet-planning`
+/// `https://www.testprepkart.com/self-study/api/tree/content/jee/jee-planning`
 /// Stored in admin Firestore `content_library_imports/config` as `apiUrl`.
 ///
 /// **API 2 — node reading body** (mobile section detail + admin node preview):

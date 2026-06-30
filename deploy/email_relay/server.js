@@ -9,6 +9,7 @@ const nodemailer = require("nodemailer");
 
 const PORT = Number(process.env.PORT || 8787);
 const ALLOWED_ORIGINS = new Set([
+  "https://jeeappadmin.satlas.org",
   "https://neetappadmin.satlas.org",
   "http://127.0.0.1:8081",
   "http://localhost:8081",

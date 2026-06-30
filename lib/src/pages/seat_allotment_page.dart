@@ -202,7 +202,7 @@ class _CsvImportTabState extends State<_CsvImportTab> {
       if (!mounted) return;
       final msg = e.toString();
       final hint = msg.contains('permission-denied')
-          ? ' Deploy Firestore rules: from neetprep_flutter run '
+          ? ' Deploy Firestore rules: from jeeprep_flutter run '
               '`firebase deploy --only firestore:rules`. '
               'Sign in as owner or an active admin/moderator.'
           : '';
@@ -503,9 +503,9 @@ class _MobileBundleTab extends StatelessWidget {
   const _MobileBundleTab();
 
   static const _publishSteps = '''
-From neetprep_flutter (after CSV preprocess + DB rebuild):
+From jeeprep_flutter (after CSV preprocess + DB rebuild):
 
-  cd E:\\New_TPK_2026\\Apps\\neetprep_flutter
+  cd E:\\New_TPK_2026\\Apps\\jeeprep_flutter
   node tool/build_seat_allotment_db.mjs
   node tool/publish_seat_allotment_bundle.mjs
 
@@ -526,7 +526,7 @@ Requires tool/service-account.json (gitignored). Mobile app: MBBS Seats hub → 
           if (snapshot.hasError) {
             final err = '${snapshot.error}';
             final hint = err.contains('permission-denied')
-                ? '\n\nDeploy rules from neetprep_flutter:\n'
+                ? '\n\nDeploy rules from jeeprep_flutter:\n'
                     'powershell -File tool/deploy_seat_allotment_rules.ps1'
                 : '';
             return Center(
@@ -772,7 +772,7 @@ class _DatasetsTab extends StatelessWidget {
             final err = '${snapshot.error}';
             final hint = err.contains('permission-denied')
                 ? '\n\nDeploy rules: firebase deploy --only firestore:rules '
-                    '(from neetprep_flutter).'
+                    '(from jeeprep_flutter).'
                 : '';
             return Center(
               child: Padding(

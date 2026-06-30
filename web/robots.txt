@@ -1,0 +1,3 @@
+# JEE Prep Admin — private staff CMS; do not index.
+User-agent: *
+Disallow: /

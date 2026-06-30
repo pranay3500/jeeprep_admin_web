@@ -293,7 +293,7 @@ class _SlotsManagementPageState extends State<SlotsManagementPage> {
                           if (denied) ...[
                             const SizedBox(height: 12),
                             const Text(
-                              'Deploy rules from neetprep_flutter:\n'
+                              'Deploy rules from jeeprep_flutter:\n'
                               'firebase deploy --only firestore:default:rules\n\n'
                               'You must be signed in as owner or moderator. '
                               'Collection: analysis_slot_templates',

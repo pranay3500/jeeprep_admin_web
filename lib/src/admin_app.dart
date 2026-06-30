@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+﻿import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +40,7 @@ class AdminApp extends StatelessWidget {
     final home = _resolveHome(firebaseReady);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NEET Prep Admin',
+      title: 'JEE Prep Admin',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF5E35B1)),
         useMaterial3: true,
@@ -160,7 +160,7 @@ class _AdminAccessPendingPage extends StatelessWidget {
               const CircularProgressIndicator(),
               const SizedBox(height: 16),
               Text(
-                'Checking admin access for $email…',
+                'Checking admin access for $emailâ€¦',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
@@ -283,7 +283,7 @@ class _FirebaseSetupRequiredPage extends StatelessWidget {
                   const Text('Next steps:'),
                   const SizedBox(height: 6),
                   const Text(
-                    '1) Run: flutterfire configure (inside neetprep_admin_web)',
+                    '1) Run: flutterfire configure (inside jeeprep_admin_web)',
                   ),
                   const Text(
                     '2) Ensure firebase_options.dart is generated for web',
@@ -344,13 +344,13 @@ class _AdminHomeShellState extends State<AdminHomeShell> {
 
   final _titles = const [
     'Demo Request',
-    'NEET Exam Date & Parent Guide CMS',
+    'JEE Exam Date & Parent Guide CMS',
     'Eligibility Tool',
     'Messages',
     'Content Library Import',
     'Content Library Editor',
-    'NEET Updates CMS',
-    'NEET Timelines CMS',
+    'JEE Updates CMS',
+    'JEE Timelines CMS',
     'Subscription CMS',
     'Medical Colleges CMS',
     'Seat Allotment',
@@ -530,6 +530,7 @@ class _AdminNavigationRail extends StatelessWidget {
     required bool hasPendingCourses,
     required bool hasPendingSubscriptionRequests,
     required bool hasPendingUnsubscribeRequests,
+    required bool hasUnreadNewUsers,
   }) {
     return _destinations
         .map(
@@ -542,7 +543,8 @@ class _AdminNavigationRail extends StatelessWidget {
                 (d.index == 3 && hasPendingMessages) ||
                 (d.index == 11 && hasPendingCourses) ||
                 (d.index == 14 && hasPendingUnsubscribeRequests) ||
-                (d.index == 15 && hasPendingSubscriptionRequests),
+                (d.index == 15 &&
+                    (hasUnreadNewUsers || hasPendingSubscriptionRequests)),
           ),
         )
         .toList();
@@ -610,53 +612,68 @@ class _AdminNavigationRail extends StatelessWidget {
                             final hasPendingSubscriptionRequests =
                                 (subscriptionSnapshot.data?.docs ?? const [])
                                     .isNotEmpty;
-                            final items = _withBadges(
-                              hasPendingDemoRequests: hasPendingDemoRequests,
-                              hasPendingMessages: hasPendingMessages,
-                              hasPendingCourses: hasPendingCourses,
-                              hasPendingSubscriptionRequests:
-                                  hasPendingSubscriptionRequests,
-                              hasPendingUnsubscribeRequests:
-                                  hasPendingUnsubscribeRequests,
-                            );
-                        return SizedBox(
-                          width: 220,
-                          child: Material(
-                            color: colorScheme.surfaceContainerHighest
-                                .withValues(alpha: 0.35),
-                            child: ListView.builder(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              itemCount: items.length,
-                              itemBuilder: (context, i) {
-                                final item = items[i];
-                                final selected = selectedIndex == item.index;
-                                return ListTile(
-                                  dense: true,
-                                  selected: selected,
-                                  leading: _PendingBadgeIcon(
-                                    icon: selected
-                                        ? item.selectedIcon
-                                        : item.icon,
-                                    showBadge: item.showBadge,
-                                  ),
-                                  title: Text(
-                                    item.label,
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: selected
-                                          ? FontWeight.w600
-                                          : FontWeight.w400,
+                            return StreamBuilder<
+                                QuerySnapshot<Map<String, dynamic>>>(
+                              stream: FirestoreDb.instance
+                                  .collection('users')
+                                  .where('adminUnread', isEqualTo: true)
+                                  .limit(1)
+                                  .snapshots(),
+                              builder: (context, newUsersSnapshot) {
+                                final hasUnreadNewUsers =
+                                    (newUsersSnapshot.data?.docs ?? const [])
+                                        .isNotEmpty;
+                                final items = _withBadges(
+                                  hasPendingDemoRequests:
+                                      hasPendingDemoRequests,
+                                  hasPendingMessages: hasPendingMessages,
+                                  hasPendingCourses: hasPendingCourses,
+                                  hasPendingSubscriptionRequests:
+                                      hasPendingSubscriptionRequests,
+                                  hasPendingUnsubscribeRequests:
+                                      hasPendingUnsubscribeRequests,
+                                  hasUnreadNewUsers: hasUnreadNewUsers,
+                                );
+                                return SizedBox(
+                                  width: 220,
+                                  child: Material(
+                                    color: colorScheme.surfaceContainerHighest
+                                        .withValues(alpha: 0.35),
+                                    child: ListView.builder(
+                                      padding:
+                                          const EdgeInsets.symmetric(vertical: 8),
+                                      itemCount: items.length,
+                                      itemBuilder: (context, i) {
+                                        final item = items[i];
+                                        final selected =
+                                            selectedIndex == item.index;
+                                        return ListTile(
+                                          dense: true,
+                                          selected: selected,
+                                          leading: _PendingBadgeIcon(
+                                            icon: selected
+                                                ? item.selectedIcon
+                                                : item.icon,
+                                            showBadge: item.showBadge,
+                                          ),
+                                          title: Text(
+                                            item.label,
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: selected
+                                                  ? FontWeight.w600
+                                                  : FontWeight.w400,
+                                            ),
+                                          ),
+                                          onTap: () =>
+                                              onDestinationSelected(item.index),
+                                        );
+                                      },
                                     ),
                                   ),
-                                  onTap: () =>
-                                      onDestinationSelected(item.index),
                                 );
                               },
-                            ),
-                          ),
-                        );
-                          },
-                        );
+                            );
                       },
                     );
                   },
@@ -665,6 +682,8 @@ class _AdminNavigationRail extends StatelessWidget {
             );
           },
         );
+      },
+    );
       },
     );
   }

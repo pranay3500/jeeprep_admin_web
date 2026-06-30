@@ -1,4 +1,4 @@
-/// In-app banner tap targets — `id` must match mobile `DashboardBannerTargets`.
+﻿/// In-app banner tap targets â€” `id` must match mobile `DashboardBannerTargets`.
 class DashboardBannerTargetOption {
   const DashboardBannerTargetOption({
     required this.id,
@@ -21,7 +21,7 @@ abstract final class DashboardBannerTargetOptions {
     ),
     DashboardBannerTargetOption(
       id: 'medical_colleges',
-      label: 'Medical Colleges',
+      label: 'Colleges (engineering â€” when live)',
       group: 'Main tabs',
     ),
     DashboardBannerTargetOption(
@@ -34,7 +34,7 @@ abstract final class DashboardBannerTargetOptions {
   static const screens = [
     DashboardBannerTargetOption(
       id: 'expected_score',
-      label: 'Expected NEET Score',
+      label: 'Expected JEE Score',
       group: 'App screens',
     ),
     DashboardBannerTargetOption(
@@ -64,7 +64,7 @@ abstract final class DashboardBannerTargetOptions {
     ),
     DashboardBannerTargetOption(
       id: 'nri_eligibility',
-      label: 'NRI Eligibility',
+      label: 'JEE Eligibility (when live)',
       group: 'App screens',
     ),
     DashboardBannerTargetOption(
@@ -79,7 +79,7 @@ abstract final class DashboardBannerTargetOptions {
     ),
     DashboardBannerTargetOption(
       id: 'parents_guide',
-      label: 'NEET parents guide',
+      label: 'JEE parents guide',
       group: 'App screens',
     ),
     DashboardBannerTargetOption(

@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Pre-built deploy bundles (upload build/web/ instead)
+/jee_admin_deploy/
+jee_admin_deploy.zip
+DEPLOY_VERIFY.txt

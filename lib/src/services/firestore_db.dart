@@ -8,7 +8,8 @@ class FirestoreDb {
   FirestoreDb._();
 
   static FirebaseFirestore? _instance;
-  static const String databaseId = 'default';
+  /// JEE Firebase project uses `(default)` — NEET uses a separate DB id `default`.
+  static const String databaseId = '(default)';
   static bool _initialized = false;
 
   /// Public CMS doc (rules: `allow read: if true`) — safe before admin sign-in.

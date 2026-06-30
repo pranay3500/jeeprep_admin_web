@@ -14,7 +14,7 @@ class TimelineCmsPage extends StatelessWidget {
   static final List<Map<String, dynamic>> _defaultEvents = [
     {
       'id': 'timeline_exam_registration',
-      'title': 'NEET Registration Window',
+      'title': 'JEE Main Registration Window',
       'date': 'Feb 09 - Mar 09, 2026',
       'status': 'Completed',
       'phase': 'Past',
@@ -46,7 +46,7 @@ class TimelineCmsPage extends StatelessWidget {
       'startDate': DateTime.now().subtract(const Duration(days: 14)),
       'endDate': DateTime.now().subtract(const Duration(days: 12)),
       'description':
-          'Limited correction period for eligible fields in the submitted NEET application.',
+          'Limited correction period for eligible fields in the submitted JEE application.',
       'parentRequirements': [
         'Final school records for names and DOB match',
         'Correct category and identity details',
@@ -82,7 +82,7 @@ class TimelineCmsPage extends StatelessWidget {
     },
     {
       'id': 'timeline_exam_day',
-      'title': 'NEET Exam Day',
+      'title': 'JEE Main Exam Day',
       'date': 'May 03, 2026',
       'status': 'Scheduled',
       'phase': 'Upcoming',
@@ -105,7 +105,7 @@ class TimelineCmsPage extends StatelessWidget {
     },
     {
       'id': 'timeline_results',
-      'title': 'NEET Result + Scorecard',
+      'title': 'JEE Main Result + Scorecard',
       'date': 'June 2026',
       'status': 'Upcoming',
       'phase': 'Upcoming',
@@ -507,7 +507,7 @@ class TimelineCmsPage extends StatelessWidget {
             children: [
               const Expanded(
                 child: Text(
-                  'Create, edit, publish, and order the NEET timeline cards shown in the mobile app.',
+                  'Create, edit, publish, and order the JEE timeline cards shown in the mobile app.',
                 ),
               ),
               OutlinedButton.icon(

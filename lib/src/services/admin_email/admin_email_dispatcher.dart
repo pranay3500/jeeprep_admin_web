@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -85,7 +85,7 @@ class AdminEmailDispatcher {
       return;
     }
 
-    final appName = _text(settings['senderName'], 'TestprepKart NEET');
+    final appName = _text(settings['senderName'], 'TestprepKart JEE');
     final base = <String, String>{
       'appName': appName,
       'actionUrl': payload['actionUrl'] ?? AdminEmailConfig.adminWebBaseUrl,
@@ -189,7 +189,7 @@ class AdminEmailDispatcher {
 
     if (!result.ok) {
       debugPrint(
-        '[TPK][ADMIN][EMAIL] failed $triggerKey → $to: ${result.error}',
+        '[TPK][ADMIN][EMAIL] failed $triggerKey â†’ $to: ${result.error}',
       );
     }
     return result.ok;

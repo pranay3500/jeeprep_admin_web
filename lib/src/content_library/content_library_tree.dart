@@ -97,7 +97,7 @@ class ContentLibraryTreeBuilder {
     return roots.map((e) => e.toTreeNode()).toList();
   }
 
-  /// Skips a single "NEET Planning" shell so units are top-level in the editor.
+  /// Skips a single "JEE Planning" shell so units are top-level in the editor.
   static List<ContentLibraryTreeNode> unwrapPlanningShell(
     List<ContentLibraryTreeNode> roots,
   ) {

@@ -1,18 +1,18 @@
 {
   "firestore": [
     {
-      "database": "default",
-      "rules": "../neetprep_flutter/firestore.rules",
-      "indexes": "../neetprep_flutter/firestore.indexes.json"
+      "database": "(default)",
+      "rules": "../jeeprep_flutter/firestore.rules",
+      "indexes": "../jeeprep_flutter/firestore.indexes.json"
     }
   ],
   "flutter": {
     "platforms": {
       "dart": {
         "lib/firebase_options.dart": {
-          "projectId": "neet-prep-app-fc7fa",
+          "projectId": "jee-prep-app-16bd5",
           "configurations": {
-            "web": "1:793601317869:web:bbfcfd52486829dccae5e4"
+            "web": "1:616476778386:web:b36f9dd294a127e5f1eb4b"
           }
         }
       }

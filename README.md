@@ -1,75 +1,55 @@
-# neetprep_admin_web
+# jeeprep_admin_web
 
-A new Flutter project for NEET Prep Admin.
+Flutter admin CMS for **TestprepKart JEE Prep** (separate from NEET).
 
-## Running the Admin App
+- **GitHub:** https://github.com/pranay3500/jeeprep_admin_web
+- **Live URL:** https://jeeappadmin.satlas.org/
+- **Firebase project:** `jee-prep-app-16bd5` (see `lib/firebase_options.dart`)
+- **Mobile app repo:** https://github.com/pranay3500/jeeprep_flutter (Firestore rules + indexes)
 
-To run the admin app with the specific Flutter SDK path and configuration, use the following commands in PowerShell:
+## Running locally
 
 ```powershell
-cd "e:\New_TPK_2026\Apps\neetprep_admin_web"
-
-# Fetch dependencies
-& "E:\New_TPK_2026\Apps\NEET_Flutter_App\SDK\flutter\bin\flutter.bat" pub get
-
-# Run the app
-& "E:\New_TPK_2026\Apps\NEET_Flutter_App\SDK\flutter\bin\flutter.bat" run `
-  -d web-server `
-  --web-hostname 127.0.0.1 `
-  --web-port 8081
+cd "e:\New_TPK_2026\Apps\jeeprep_admin_web"
+powershell -File tool\run_admin_web.ps1
 ```
 
-Alternatively, you can run the provided script:
-`./run_admin.ps1`
+Or double-click `start admin app.bat`.
 
-## Deploy to live server (https://neetappadmin.satlas.org/)
+Add `localhost` and `127.0.0.1` under Firebase Console → Authentication → Authorized domains for local sign-in.
 
-Local code is **not** synced to the server automatically. Each release is: **build on PC → upload `build/web` → replace old files on host**.
+## Deploy to live server
 
-### 1. Build (every time you change admin code)
+Local code is **not** synced automatically. Each release: **build on PC → upload `build/web` → replace old files on Satlas**.
+
+### 1. Build
 
 ```powershell
-cd "e:\New_TPK_2026\Apps\neetprep_admin_web"
+cd "e:\New_TPK_2026\Apps\jeeprep_admin_web"
 powershell -ExecutionPolicy Bypass -File .\deploy_admin.ps1
 ```
 
-Or manually:
+Output: **`build/web/`** — upload the **entire folder** to the document root for `jeeappadmin.satlas.org`.
 
-```powershell
-flutter pub get
-flutter build web --release
-```
+The build script verifies `main.dart.js` contains `jee-prep-app-16bd5` and rejects wrong Firebase projects before you upload.
 
-Output: **`build/web/`** — upload the **entire folder** to the server document root for `neetappadmin.satlas.org`.
+### 2. Upload to Satlas
 
-### 2. Upload to Satlas (how you did the first deploy)
-
-Use the **same method** you used to go live (typical options):
-
-| Method | What you do |
-|--------|-------------|
-| **Hosting file manager / FTP** | Connect to Satlas → open site root → delete or backup old files → upload all files from `build/web/` |
-| **SSH + SCP/rsync** | `scp -r build/web/* user@server:/path/to/site/root/` |
-| **Git on server** | Commit `build/web` is usually **not** recommended; prefer build locally and upload artifacts |
-
-We do not store Satlas credentials in this repo. Whoever manages the Satlas account performs the upload.
+Use FTP / file manager / SCP — same method as your first deploy. Upload **all** files from `build/web/`.
 
 ### 3. Verify
 
-1. Open https://neetappadmin.satlas.org/
-2. Hard refresh: **Ctrl+Shift+R** (cached `main.dart.js` is a common issue)
-3. Sign in and check the page you changed
+1. Open https://jeeappadmin.satlas.org/
+2. Hard refresh: **Ctrl+Shift+R**
+3. Sign-in footer must show Firebase project: **jee-prep-app-16bd5**
+4. DevTools → Network → sign in → `signInWithPassword` must **not** call `testprepkart-jee-prep`
 
-### Repeat workflow
+### Firebase Console (`jee-prep-app-16bd5`)
 
-```text
-Edit Dart/JS in neetprep_admin_web → deploy_admin.ps1 → upload build/web → hard refresh live site
-```
+- Authentication → Sign-in method → **Email/Password** enabled
+- Authentication → Authorized domains → **jeeappadmin.satlas.org**
+- Deploy rules from `jeeprep_flutter`: `firebase deploy --only firestore:rules --project jee-prep-app-16bd5`
 
-### Email (no Firebase Blaze)
+### Email relay (optional)
 
-1. Deploy `deploy/email_relay` on Satlas (see `deploy/email_relay/README.md`).
-2. In admin **Settings → Email Config**, set **Email Relay URL** and SMTP (Hostinger).
-3. Keep admin signed in — the app watches Firestore and sends mail.
-
-Deploy Firestore rules from `neetprep_flutter` after pull: `firebase deploy --only firestore:rules`
+Deploy `deploy/email_relay` on Satlas; set URL in admin Settings. See `deploy/email_relay/README.md`.

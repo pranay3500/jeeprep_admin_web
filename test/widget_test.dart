@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:neetprep_admin_web/src/admin_app.dart';
+import 'package:jeeprep_admin_web/src/admin_app.dart';
 
 void main() {
   testWidgets('Shows Firebase setup guidance when not configured', (WidgetTester tester) async {

@@ -1,6 +1,52 @@
-# NEET Prep Admin Web — Progress & Pitfalls
+# JEE Prep Admin Web — Progress & Pitfalls
 
-Tracks admin-only work so sessions do not re-debug the same issues. Pair with mobile app `neetprep_flutter/PROGRESS.md` for end-to-end Content Library flow.
+> **Living log:** After each successful milestone, add a dated entry under **JEE integration log** below. Pair with `jeeprep_flutter/PROGRESS.md`.
+
+## JEE integration log
+
+| Date | Step | Status | Notes |
+|------|------|--------|-------|
+| 2026-06-08 | Admin login live | **Done** | https://jeeappadmin.satlas.org/ → `jee-prep-app-16bd5`; CDN cache-bust in `flutter_bootstrap.js` |
+| 2026-06-08 | Firebase Auth (Console) | **Done** | Email/Password, user, authorized domains |
+| 2026-06-08 | Web app registration | **Done** | Matches `lib/firebase_options.dart` |
+| 2026-06-08 | Mobile `google-services.json` | **Done** | User replaced file → `jee-prep-app-16bd5` (verified by mobile `configure_jee_android_firebase.ps1`) |
+| 2026-06-08 | Connectivity check | **Pass** | `tool/firebase_connection_check.ps1` — API OK; CMS docs missing until seed |
+| 2026-06-08 | Firestore rules deploy | **Done** | `pranay3500@gmail.com` CLI; `firestore:rules` deployed to `jee-prep-app-16bd5` |
+| 2026-06-08 | Tier 3–4 admin code | **Done** | `jee_main`, JEE CL API default, JEE Updates labels |
+| 2026-06-08 | TPK JEE web icon | **Done** | `assets/icon/app_icon.png`; `flutter_launcher_icons` → `web/favicon.png` + `web/icons/*`; manifest green theme |
+| 2026-06-09 | Favicon live check | **Pending deploy** | Source/build = 648 B green TPK; live `favicon.png` still 2086 B (Jun 8 upload). Rebuild done — upload `build/web/` + purge CDN |
+| 2026-06-09 | CMS seed (Tier 2) | **Done** | `jeeprep_flutter/tool/seed_jee_cms.mjs` — 6 minimum docs in `jee-prep-app-16bd5` |
+| 2026-06-10 | Firestore databaseId fix | **Done** | Admin `firestore_db.dart` + `firebase.json` → `(default)`; fixes save timeout + app sync |
+| 2026-06-10 | JEE rebrand sweep | **Done** | CMS defaults, nav titles, courses/webinars/timeline templates, settings/email copy → JEE |
+| 2026-06-10 | Exam Date permission-denied | **Fixed** | Root cause: old admin used Firestore DB `default` (NEET); JEE uses `(default)`. Rules re-released to `(default)` DB |
+| 2026-06-10 | Users nav unread dot | **Done** | Mobile signup sets `users.adminUnread`; admin nav red dot on **Users**; clears when Users page opens |
+| 2026-06-10 | Search engine blocking | **Done** | `web/robots.txt` (Disallow all), `index.html` meta robots, `.htaccess` `X-Robots-Tag` for jeeappadmin.satlas.org |
+| | Rebuild + upload admin | **Optional** | If pulling latest JEE branding strings |
+
+> **JEE clone status (2026-06-08):** Source + live admin on **`jee-prep-app-16bd5`**. Owner UID `GR9UjlgW4bVMIgCeFovzKhX1UGs1`.
+
+## Update — 2026-06-08 (Admin login — wrong Firebase project on live server)
+
+- **Root cause:** Network tab on live `jeeappadmin.satlas.org` showed Auth/Firestore calling **`testprepkart-jee-prep`** (`CONFIGURATION_NOT_FOUND` / 400). User Console only has **`jee-prep-app-16bd5`** + NEET — password reset in JEE project was correct; **uploaded `build/web` was wrong**.
+- **Source audit:** `lib/firebase_options.dart`, `.firebaserc`, `firebase.json`, `admin_auth_constants.dart`, `admin_email_config.dart` already point at `jee-prep-app-16bd5` / `jeeappadmin.satlas.org`.
+- **Fixed:** NEET URLs in `README.md`, `build_admin_daily.bat`, `tool/build_admin_web.ps1`, `deploy/email_relay/README.md`; build verification in `deploy_admin.ps1` + `tool/build_admin_web.ps1` (rejects `testprepkart-jee-prep` / `neet-prep-app-fc7fa` in `main.dart.js`).
+- **Pending:** Run `deploy_admin.ps1` → upload **all** of `build/web/` → hard refresh → sign in with user from **JEE Prep App** (`jee-prep-app-16bd5`) Authentication. Add authorized domain `jeeappadmin.satlas.org` if missing. Deploy `jeeprep_flutter/firestore.rules` to same project.
+
+## Update — 2026-06-08 (CDN cache — not upload failure)
+
+- **Root cause (confirmed):** Origin `main.dart.js` on Satlas is correct (4,952,499 B, `jee-prep-app-16bd5`). **Cloudflare CDN** still serves stale `main.dart.js` (4,952,200 B, `testprepkart-jee-prep`) at the bare URL. `mainn.dart.js` worked because that URL was not cached. `main.dart.js?cachebuster` also returns the new file.
+- **Fix:** Purge Cloudflare cache for `jeeappadmin.satlas.org` (Hostinger hPanel → Cloudflare → Purge). Build script now appends `?v=<buildId>` to `mainJsPath` in `flutter_bootstrap.js` so future deploys bypass CDN stale `main.dart.js`.
+- **Cleanup:** Delete `mainn.dart.js` on server after purge.
+
+## Update — 2026-06-08 (JEE_PARALLEL_CHECKLIST Tier 3–4 admin code)
+
+- **JEE product constants:** `lib/src/jee_product_constants.dart` (`jee_main`, `jee/jee-planning`, JEE Updates label)
+- **Exam Date CMS:** `exam_date_cms_page.dart` → `cms_exam_date/jee_main`
+- **CL Import:** default API URL → JEE tree; **Updates/Settings/email** → “JEE Updates” branding
+- **Banner targets:** JEE labels in `dashboard_banner_targets.dart`
+- **Pending:** Rebuild + upload admin after pull; seed `cms_exam_date/jee_main` in admin UI
+
+Tracks admin-only work so sessions do not re-debug the same issues. Pair with mobile app `jeeprep_flutter/PROGRESS.md` for end-to-end Content Library flow.
 
 ## Content architecture (do not confuse APIs)
 

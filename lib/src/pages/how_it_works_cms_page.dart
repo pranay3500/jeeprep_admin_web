@@ -38,7 +38,7 @@ class HowItWorksCmsPage extends StatelessWidget {
         {
           'title': 'Get expert analysis',
           'description':
-              'Our academics team evaluates profile and NEET readiness.',
+              'Our academics team evaluates profile and JEE readiness.',
           'order': 2,
           'iconKey': 'analysis',
           'colorKey': 'blue',

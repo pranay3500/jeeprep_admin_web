@@ -3,9 +3,9 @@ abstract final class AdminEmailConfig {
   static const String settingsPath = 'admin_settings/email';
   static const String sentMarkersCollection = 'admin_email_sent';
   static const String dispatchLogsCollection = 'email_dispatch_logs';
-  static const String adminWebBaseUrl = 'https://neetappadmin.satlas.org/';
+  static const String adminWebBaseUrl = 'https://jeeappadmin.satlas.org/';
   static const String defaultRelayUrl =
-      'https://neetappadmin.satlas.org/api/send-email';
+      'https://jeeappadmin.satlas.org/api/send-email';
 
   static const defaultTriggers = <String, bool>{
     'userRegistered': true,

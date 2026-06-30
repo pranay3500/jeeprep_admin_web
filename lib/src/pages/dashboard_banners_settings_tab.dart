@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -216,7 +216,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
         {
           'id': 'banner_1',
           'imageUrl':
-              'https://placehold.co/1200x480/5B4FE8/FFFFFF/png?text=Plan+Your+NEET+Journey',
+              'https://placehold.co/1200x480/5B4FE8/FFFFFF/png?text=Plan+Your+JEE+Journey',
           'linkType': 'external',
           'linkUrl': 'https://www.testprepkart.com',
           'order': 1,
@@ -225,7 +225,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
         {
           'id': 'banner_2',
           'imageUrl':
-              'https://placehold.co/1200x480/2563EB/FFFFFF/png?text=Book+Expected+Score+Demo',
+              'https://placehold.co/1200x480/2563EB/FFFFFF/png?text=Book+Expected+JEE+Score+Demo',
           'linkType': 'app',
           'appRoute': 'expected_score',
           'order': 2,
@@ -252,7 +252,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
         {
           'id': 'banner_5',
           'imageUrl':
-              'https://placehold.co/1200x480/7C3AED/FFFFFF/png?text=Unlock+Premium+Prep',
+              'https://placehold.co/1200x480/7C3AED/FFFFFF/png?text=Unlock+Premium+JEE+Prep',
           'linkType': 'none',
           'order': 5,
           'isPublished': true,
@@ -505,7 +505,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
                           ),
                         )
                       : const Icon(Icons.publish_outlined),
-                  label: Text(_saving ? 'Publishing…' : 'Publish banners'),
+                  label: Text(_saving ? 'Publishingâ€¦' : 'Publish banners'),
                 ),
               ],
             ),
@@ -516,7 +516,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
   String _aspectLabel() {
     final w = int.tryParse(_widthCtrl.text.trim()) ?? 1200;
     final h = int.tryParse(_heightCtrl.text.trim()) ?? 480;
-    if (h <= 0) return '—';
+    if (h <= 0) return 'â€”';
     final g = _gcd(w, h);
     return '${w ~/ g}:${h ~/ g}';
   }
@@ -620,7 +620,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
                 decoration: const InputDecoration(
                   labelText: 'Website URL',
                   border: OutlineInputBorder(),
-                  hintText: 'https://…',
+                  hintText: 'https://â€¦',
                 ),
                 onChanged: (_) => _markDirty(),
               ),
@@ -657,7 +657,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
                   labelText: 'Landing page body',
                   border: OutlineInputBorder(),
                   alignLabelWithHint: true,
-                  hintText: 'Full message shown when the user taps the banner…',
+                  hintText: 'Full message shown when the user taps the bannerâ€¦',
                 ),
                 minLines: 4,
                 maxLines: 8,
@@ -765,7 +765,7 @@ class _DashboardBannersSettingsTabState extends State<DashboardBannersSettingsTa
         .map(
           (t) => DropdownMenuItem<String>(
             value: t.id,
-            child: Text('${t.group} · ${t.label}'),
+            child: Text('${t.group} Â· ${t.label}'),
           ),
         )
         .toList();

@@ -1,4 +1,4 @@
-/// Keep in sync with `neetprep_flutter/lib/features/dashboard/utils/update_read_time.dart`.
+/// Keep in sync with `jeeprep_flutter/lib/features/dashboard/utils/update_read_time.dart`.
 abstract final class UpdateReadTime {
   static const int wordsPerMinute = 200;
   static const int minMinutes = 1;

@@ -2,14 +2,15 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-title NEET Prep Admin - Daily Web Build
+title JEE Prep Admin - Daily Web Build
 
 echo.
 echo ============================================================
-echo   NEET Prep Admin Web - daily release build
+echo   JEE Prep Admin Web - daily release build
 echo   Project: %CD%
+echo   Firebase: jee-prep-app-16bd5
 echo   Output:  build\web\
-echo   Live:    https://neetappadmin.satlas.org/
+echo   Live:    https://jeeappadmin.satlas.org/
 echo   Started: %DATE% %TIME%
 echo ============================================================
 echo.
@@ -29,7 +30,7 @@ echo   [OK] Build finished
 echo.
 echo   Next: upload ALL files from:
 echo         %CD%\build\web
-echo   to your server document root, then hard-refresh the live site.
+echo   to jeeappadmin.satlas.org document root, then hard-refresh.
 echo ============================================================
 echo.
 

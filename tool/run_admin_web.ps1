@@ -1,4 +1,4 @@
-# Run NEET Prep admin web locally (opens Chrome).
+# Run JEE Prep admin web locally (opens Chrome).
 # Usage: powershell -File tool/run_admin_web.ps1
 # Optional: powershell -File tool/run_admin_web.ps1 -WebPort 8082
 
@@ -47,7 +47,7 @@ if (Test-TcpPortInUse -Port $WebPort) {
   }
 }
 
-Write-Host "NEET Prep Admin Web - local dev" -ForegroundColor Cyan
+Write-Host "JEE Prep Admin Web - local dev" -ForegroundColor Cyan
 Write-Host "Folder: $(Get-Location)" -ForegroundColor DarkGray
 Write-Host "Flutter: $script:FlutterSdkRoot" -ForegroundColor DarkGray
 Write-Host "Web port: $WebPort" -ForegroundColor DarkGray

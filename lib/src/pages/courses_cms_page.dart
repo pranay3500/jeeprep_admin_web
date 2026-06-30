@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -204,12 +204,12 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
                           const SizedBox(height: 10),
                           Text(
                             _lastSeedError ??
-                                'Tap “Sync 5 templates” above. You must be signed in; '
+                                'Tap â€œSync 5 templatesâ€ above. You must be signed in; '
                                 'Firestore rules must allow authenticated writes to collection '
                                 '`courses` with document IDs: course_1yr_intensive, '
                                 'course_2yr_program, course_foundation, course_crash, '
-                                'course_test_series. Pasting JSON in chat does not import data — '
-                                'sync uses built‑in payloads matching those IDs.',
+                                'course_test_series. Pasting JSON in chat does not import data â€” '
+                                'sync uses builtâ€‘in payloads matching those IDs.',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 13,
@@ -316,7 +316,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
       try {
         payloads = _seedCoreCourses();
       } catch (e) {
-        failures.add('build seed payloads → $e');
+        failures.add('build seed payloads â†’ $e');
         return;
       }
 
@@ -336,14 +336,14 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
             try {
               data = _stripNullValuesFromMap(data);
             } catch (e) {
-              failures.add('$id (strip nulls) → $e');
+              failures.add('$id (strip nulls) â†’ $e');
               continue;
             }
             await ref.set(data, SetOptions(merge: true));
             created++;
           }
         } catch (e) {
-          failures.add('$id → $e');
+          failures.add('$id â†’ $e');
         }
       }
     }
@@ -351,7 +351,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
     try {
       await upsertMissing();
     } catch (e) {
-      failures.add('bulk sync → $e');
+      failures.add('bulk sync â†’ $e');
     } finally {
       if (mounted) {
         setState(() {
@@ -372,7 +372,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
           : failures.join(' | ');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Course templates: write failed — $short'),
+          content: Text('Course templates: write failed â€” $short'),
           backgroundColor: const Color(0xFFC62828),
           duration: const Duration(seconds: 8),
         ),
@@ -624,7 +624,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
                     minLines: 2,
                     maxLines: 6,
                     decoration: const InputDecoration(
-                      labelText: 'Fill Enrollment Form — HTML or text',
+                      labelText: 'Fill Enrollment Form â€” HTML or text',
                     ),
                   ),
                   TextField(
@@ -632,7 +632,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
                     minLines: 2,
                     maxLines: 6,
                     decoration: const InputDecoration(
-                      labelText: 'Bank & Account Details — HTML or text',
+                      labelText: 'Bank & Account Details â€” HTML or text',
                     ),
                   ),
                   TextField(
@@ -640,7 +640,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
                     minLines: 2,
                     maxLines: 6,
                     decoration: const InputDecoration(
-                      labelText: 'Course Brochure — HTML or text',
+                      labelText: 'Course Brochure â€” HTML or text',
                     ),
                   ),
                   TextField(
@@ -648,7 +648,7 @@ class _AllCoursesTabState extends State<_AllCoursesTab> {
                     minLines: 2,
                     maxLines: 6,
                     decoration: const InputDecoration(
-                      labelText: 'Payment Methods — HTML or text',
+                      labelText: 'Payment Methods â€” HTML or text',
                     ),
                   ),
                   TextField(
@@ -789,11 +789,11 @@ class _PageSettingsFormState extends State<_PageSettingsForm> {
     super.initState();
     final video = _map(widget.data['featuredVideoBlock']);
     title = TextEditingController(text: _text(widget.data['pageTitle'], 'Courses'));
-    subtitle = TextEditingController(text: _text(widget.data['pageSubtitle'], 'NEET coaching for NRI students'));
+    subtitle = TextEditingController(text: _text(widget.data['pageSubtitle'], 'JEE coaching for NRI students'));
     bg = TextEditingController(text: _text(widget.data['backgroundColor'], '#F5F4F0'));
     countLabel = TextEditingController(text: _text(widget.data['coursesCountLabel'], '{n} courses'));
     videoId = TextEditingController(text: _text(video['youtubeVideoId'], ''));
-    videoTitle = TextEditingController(text: _text(video['videoTitle'], 'NEET 2027 - Complete Roadmap'));
+    videoTitle = TextEditingController(text: _text(video['videoTitle'], 'JEE 2027 - Complete Roadmap'));
     videoDuration = TextEditingController(text: _text(video['videoDuration'], '14 min'));
     count = widget.data['coursesCountVisible'] != false;
     videoVisible = video['isVisible'] != false;
@@ -1057,7 +1057,7 @@ class _SectionTitle extends StatelessWidget {
 }
 
 /// Web + Firestore interop often expects `Map<String, Object>`, while Dart map
-/// literals are [LinkedMap<String, dynamic>] — a cast error at runtime. Deep-copy
+/// literals are [LinkedMap<String, dynamic>] â€” a cast error at runtime. Deep-copy
 /// to plain `Map<String, dynamic>` (preserving [FieldValue] / [Timestamp]).
 Map<String, dynamic> _materializeFirestoreMap(Map<String, dynamic> source) {
   final out = _materializeFirestoreValue(source);
@@ -1245,7 +1245,7 @@ Map<String, dynamic> _coursePayload({
 
 Map<String, dynamic> _defaultCoursePayload() => _coursePayload(
       id: 'course_1yr_intensive',
-      name: '1-Year NEET Intensive',
+      name: '1-Year JEE Intensive',
       usName: 'Grade 12 Intensive Program',
       tagline: 'Senior Year Pre-Med Track - 12 Months',
       tierLabel: 'Most Popular - Class 12',
@@ -1265,12 +1265,12 @@ Map<String, dynamic> _defaultCoursePayload() => _coursePayload(
       videoId: '',
       videoTitle: 'Course Overview - Watch Before Enrolling',
       facultyName: 'Dr. Arun Kumar',
-      facultyRole: 'Lead Faculty - Biology & NEET Strategy',
+      facultyRole: 'Lead Faculty - Mathematics & JEE Strategy',
       usaHeadline: '187 students from USA',
       usaDetail:
           'Classes at 7PM EST / 4PM PST. Weekend batches available. NRI counselor on call.',
       features:
-          'Live Classes | 48 sessions, recorded for replay | videocam_outlined\nStudy Material | NCERT notes + chapter PDFs | menu_book_outlined\n10 Mock Tests | Full NEET-pattern with AI analysis | quiz\nNRI Schedule | EST/PST timings + weekends | schedule',
+          'Live Classes | 48 sessions, recorded for replay | videocam_outlined\nStudy Material | NCERT notes + chapter PDFs | menu_book_outlined\n10 Mock Tests | Full JEE-pattern with AI analysis | quiz\nNRI Schedule | EST/PST timings + weekends | schedule',
       contentHtml: '',
       classVideos: '',
       couponCode: '',
@@ -1280,7 +1280,7 @@ Map<String, dynamic> _defaultCoursePayload() => _coursePayload(
       courseBrochure: '',
       paymentMethods: '',
       curriculum:
-          'Physics | Mechanics - Optics - Modern Physics | 4\nChemistry | Organic - Inorganic - Physical Chemistry | 4\nBiology | Botany - Zoology - Genetics - Ecology | 4',
+          'Physics | Mechanics - Optics - Modern Physics | 4\nChemistry | Organic - Inorganic - Physical Chemistry | 4\nMathematics | Botany - Zoology - Genetics - Ecology | 4',
       reviews:
           'RP | Riya Patel | Parent - New Jersey, USA | 5 | My daughter improved 40 marks in 2 months. | NRI Parent - Verified',
     );
@@ -1293,10 +1293,10 @@ List<Map<String, dynamic>> _seedCoreCourses() => [
 List<Map<String, dynamic>> _remainingCoursePayloads() => [
       _presetCoursePayload(
         id: 'course_2yr_program',
-        name: '2-Year NEET Program',
+        name: '2-Year JEE Program',
         usName: 'Pre-Med 2-Year Track',
-        meName: 'Class 11 & 12 NEET Program',
-        tagline: 'Junior + Senior Year - Complete NEET Preparation',
+        meName: 'Class 11 & 12 JEE Program',
+        tagline: 'Junior + Senior Year - Complete JEE Preparation',
         tierLabel: 'Best Value - Class 11',
         displayOrder: 2,
         isFeatured: true,
@@ -1322,22 +1322,22 @@ List<Map<String, dynamic>> _remainingCoursePayloads() => [
         videoDuration: '18 min',
         gradientStart: '#1A0A2E',
         facultyName: 'Dr. Sunita Rao',
-        facultyRole: 'Lead Faculty - Chemistry & NEET Mentoring',
+        facultyRole: 'Lead Faculty - Chemistry & JEE Mentoring',
         usaHeadline: '234 students from USA',
         usaDetail:
             'Classes at 7PM EST / 4PM PST. 2-year structured batches. Dedicated NRI mentor assigned.',
         features:
-            'Live + Recorded | 96 live sessions + full recorded library for 2 years\nFull Syllabus | Complete Class 11 + 12 NCERT coverage\n20 Mock Tests | NEET-pattern mocks across both years\nMonthly Reports | Parent progress reports every month\nDoubt Sessions | Weekly live Q&A + dedicated doubt chat\nNRI Mentor | Personal mentor assigned - US timezone',
+            'Live + Recorded | 96 live sessions + full recorded library for 2 years\nFull Syllabus | Complete Class 11 + 12 NCERT coverage\n20 Mock Tests | JEE-pattern mocks across both years\nMonthly Reports | Parent progress reports every month\nDoubt Sessions | Weekly live Q&A + dedicated doubt chat\nNRI Mentor | Personal mentor assigned - US timezone',
         curriculum:
-            'Physics | Mechanics - Thermodynamics - Electrostatics - Optics | 8\nChemistry | Physical - Organic - Inorganic Chemistry | 8\nBiology | Botany - Zoology - Genetics - Human Physiology | 8',
+            'Physics | Mechanics - Thermodynamics - Electrostatics - Optics | 8\nChemistry | Physical - Organic - Inorganic Chemistry | 8\nMathematics | Botany - Zoology - Genetics - Human Physiology | 8',
         reviews:
-            'KP | Kavitha Pillai | Parent - Chicago, USA - Class 11 | 5 | Starting in Class 11 was the best decision. The 2-year structure ensures nothing is rushed. | NRI Parent - Verified\nRM | Rohan Mehta | Student - Florida, USA - Scored 630/720 | 5 | Two years felt short because every month had a clear plan. | Qualified NEET 2025 - Verified',
+            'KP | Kavitha Pillai | Parent - Chicago, USA - Class 11 | 5 | Starting in Class 11 was the best decision. The 2-year structure ensures nothing is rushed. | NRI Parent - Verified\nRM | Rohan Mehta | Student - Florida, USA - Scored 630/720 | 5 | Two years felt short because every month had a clear plan. | Qualified JEE 2025 - Verified',
       ),
       _presetCoursePayload(
         id: 'course_foundation',
-        name: 'NEET Foundation',
+        name: 'JEE Foundation',
         usName: 'Pre-Med Foundation Track',
-        meName: 'NEET Foundation Program',
+        meName: 'JEE Foundation Program',
         tagline: 'Middle School to High School - Grades 9 & 10',
         tierLabel: 'Early Start - Class 9 & 10',
         displayOrder: 3,
@@ -1360,26 +1360,26 @@ List<Map<String, dynamic>> _remainingCoursePayloads() => [
         usdOriginal: 599,
         discountLabel: 'Foundation Offer',
         emiMonths: 12,
-        videoTitle: 'Why Start NEET Prep in Grade 9?',
+        videoTitle: 'Why Start JEE Prep in Grade 9?',
         videoDuration: '11 min',
         gradientStart: '#022C22',
         facultyName: 'Ms. Priya Menon',
-        facultyRole: 'Lead Faculty - Foundation Science & Biology',
+        facultyRole: 'Lead Faculty - Foundation Science & Mathematics',
         usaHeadline: '142 students from USA',
         usaDetail:
             'Weekend batches at 10AM EST. Grade 9 & 10 friendly pace. Build the base before the race.',
         features:
-            'Concept Building | Deep Science concepts from Grade 9 NCERT\nNCERT Focus | Complete Class 9 & 10 Science + Math\nChapter Tests | Monthly chapter tests to track progress\nParent Reports | Monthly progress reports sent to parents\nNEET Roadmap | Clear path from Grade 9 to NEET qualification\nWeekend Batches | US-friendly weekend scheduling available',
+            'Concept Building | Deep Science concepts from Grade 9 NCERT\nNCERT Focus | Complete Class 9 & 10 Science + Math\nChapter Tests | Monthly chapter tests to track progress\nParent Reports | Monthly progress reports sent to parents\nJEE Roadmap | Clear path from Grade 9 to JEE qualification\nWeekend Batches | US-friendly weekend scheduling available',
         curriculum:
-            'Physics | Motion - Force - Light - Electricity - Energy | 8\nChemistry | Matter - Atoms - Acids & Bases - Carbon Compounds | 7\nBiology | Life Processes - Control - Reproduction - Environment | 9',
+            'Physics | Motion - Force - Light - Electricity - Energy | 8\nChemistry | Matter - Atoms - Acids & Bases - Carbon Compounds | 7\nMathematics | Life Processes - Control - Reproduction - Environment | 9',
         reviews:
             'TR | Tanya Reddy | Parent - Georgia, USA - Class 9 | 5 | We enrolled our daughter in Grade 9 and the difference is clear. | NRI Parent - Verified\nNK | Nikhil Kumar | Student - Texas, USA - Moving to Class 11 prep | 5 | The foundation program made Class 11 feel easy. | Advanced to 2-Year Program - Verified',
       ),
       _presetCoursePayload(
         id: 'course_crash',
-        name: 'NEET Crash Course',
-        usName: '90-Day NEET Exam Sprint',
-        meName: 'NEET Final Preparation Bootcamp',
+        name: 'JEE Crash Course',
+        usName: '90-Day JEE Exam Sprint',
+        meName: 'JEE Final Preparation Bootcamp',
         tagline: 'Fast Track - Final Exam Bootcamp',
         tierLabel: 'Fast Track - Class 12',
         displayOrder: 4,
@@ -1402,7 +1402,7 @@ List<Map<String, dynamic>> _remainingCoursePayloads() => [
         usdOriginal: 299,
         discountLabel: 'Season Discount',
         emiMonths: 0,
-        videoTitle: '90 Days to NEET - How the Sprint Works',
+        videoTitle: '90 Days to JEE - How the Sprint Works',
         videoDuration: '9 min',
         gradientStart: '#431407',
         facultyName: 'Mr. Rajesh Iyer',
@@ -1411,17 +1411,17 @@ List<Map<String, dynamic>> _remainingCoursePayloads() => [
         usaDetail:
             'Evening sprint sessions at 7:30PM EST. Mock tests on weekends. Perfect for exam-year students.',
         features:
-            'Daily Sessions | 90 days of intensive daily 2-hr sessions\n6 Full Mock Tests | NEET-pattern timed mocks every 2 weeks\nPast 10-Year Papers | Complete solved papers from 2014-2024\nScore Analytics | Track score improvement week by week\nRapid Revision PDFs | Chapter-wise flash cards and formula sheets\nUS Evening Batches | 7:30PM EST - Weekend mocks included',
+            'Daily Sessions | 90 days of intensive daily 2-hr sessions\n6 Full Mock Tests | JEE-pattern timed mocks every 2 weeks\nPast 10-Year Papers | Complete solved papers from 2014-2024\nScore Analytics | Track score improvement week by week\nRapid Revision PDFs | Chapter-wise flash cards and formula sheets\nUS Evening Batches | 7:30PM EST - Weekend mocks included',
         curriculum:
-            'Physics - High Yield | Electrostatics - Modern Physics - Optics - Mechanics | 1\nChemistry - High Yield | Organic Reactions - Coordination - Electrochemistry | 1\nBiology - High Yield | Genetics - Human Physiology - Ecology - Reproduction | 1',
+            'Physics - High Yield | Electrostatics - Modern Physics - Optics - Mechanics | 1\nChemistry - High Yield | Organic Reactions - Coordination - Electrochemistry | 1\nMathematics - High Yield | Genetics - Human Physiology - Ecology - Reproduction | 1',
         reviews:
-            'SA | Smita Agarwal | Parent - California, USA - Class 12 | 5 | The 90-day structure with daily accountability changed everything. | NRI Parent - Verified\nVT | Vivek Thakur | Student - New York, USA - Scored 610/720 | 5 | I joined 90 days before the exam. The focus on high-yield topics and 6 mocks was exactly what I needed. | Qualified NEET 2025 - Verified',
+            'SA | Smita Agarwal | Parent - California, USA - Class 12 | 5 | The 90-day structure with daily accountability changed everything. | NRI Parent - Verified\nVT | Vivek Thakur | Student - New York, USA - Scored 610/720 | 5 | I joined 90 days before the exam. The focus on high-yield topics and 6 mocks was exactly what I needed. | Qualified JEE 2025 - Verified',
       ),
       _presetCoursePayload(
         id: 'course_test_series',
-        name: 'NEET Test Series Plan',
-        usName: 'NEET Mock Test Subscription',
-        meName: 'NEET Practice Test Series',
+        name: 'JEE Test Series Plan',
+        usName: 'JEE Mock Test Subscription',
+        meName: 'JEE Practice Test Series',
         tagline: 'Practice & Assess - Class 11 & 12',
         tierLabel: 'Practice Plan - Class 11 & 12',
         displayOrder: 5,
@@ -1444,18 +1444,18 @@ List<Map<String, dynamic>> _remainingCoursePayloads() => [
         usdOriginal: 144,
         discountLabel: 'Annual Plan',
         emiMonths: 0,
-        videoTitle: 'How Our Test Series Prepares You for NEET',
+        videoTitle: 'How Our Test Series Prepares You for JEE',
         videoDuration: '7 min',
         gradientStart: '#083344',
         facultyName: 'Dr. Vikram Sinha',
-        facultyRole: 'Head of Assessments - NEET Test Design',
+        facultyRole: 'Head of Assessments - JEE Test Design',
         usaHeadline: '198 students from USA',
         usaDetail:
             'Attempt tests anytime - no fixed schedule. Perfect for NRI students with busy school timetables.',
         features:
-            '30 Full Mocks | NEET-pattern 180-question timed tests\nAI Weak Area Alert | AI detects and flags your weak chapters\nScore Trend Graph | Track improvement over every test attempt\nNational Percentile | See where you rank among all NEET aspirants\n200+ Chapter Tests | Subject and chapter-wise practice tests\nAttempt Anytime | No fixed schedule - attempt at your own pace',
+            '30 Full Mocks | JEE-pattern 180-question timed tests\nAI Weak Area Alert | AI detects and flags your weak chapters\nScore Trend Graph | Track improvement over every test attempt\nNational Percentile | See where you rank among all JEE aspirants\n200+ Chapter Tests | Subject and chapter-wise practice tests\nAttempt Anytime | No fixed schedule - attempt at your own pace',
         curriculum:
-            'Physics | All Class 11 + 12 chapters - 10 mocks - 60+ chapter tests | 12\nChemistry | All Class 11 + 12 chapters - 10 mocks - 80+ chapter tests | 12\nBiology | All Class 11 + 12 chapters - 10 mocks - 120+ chapter tests | 12',
+            'Physics | All Class 11 + 12 chapters - 10 mocks - 60+ chapter tests | 12\nChemistry | All Class 11 + 12 chapters - 10 mocks - 80+ chapter tests | 12\nMathematics | All Class 11 + 12 chapters - 10 mocks - 120+ chapter tests | 12',
         reviews:
             'AV | Ananya Verma | Student - New Jersey, USA - Class 12 | 5 | The AI weak area detection is genuinely useful. My score jumped 55 points in 6 weeks. | Active Subscriber - Verified\nKM | Kiran Malhotra | Parent - Virginia, USA - Class 11 | 4 | No fixed schedule is a blessing for us. | NRI Parent - Verified',
       ),
@@ -1574,7 +1574,7 @@ Map<String, dynamic> _presetCoursePayload({
 
 Map<String, dynamic> _defaultSettingsPayload() => {
       'pageTitle': 'Courses',
-      'pageSubtitle': 'NEET coaching for NRI students',
+      'pageSubtitle': 'JEE coaching for NRI students',
       'backgroundColor': '#F5F4F0',
       'headerBellVisible': false,
       'coursesCountVisible': true,
@@ -1582,7 +1582,7 @@ Map<String, dynamic> _defaultSettingsPayload() => {
       'featuredVideoBlock': {
         'isVisible': true,
         'youtubeVideoId': '',
-        'videoTitle': 'NEET 2027 - Complete Roadmap',
+        'videoTitle': 'JEE 2027 - Complete Roadmap',
         'videoDuration': '14 min',
         'placeholderBg1': '#0F172A',
         'placeholderBg2': '#1E3A8A',
@@ -1699,7 +1699,7 @@ String _classVideosText(Object? raw) {
 String _generatedCouponCode(String courseId, int discountUsd) {
   final slug = courseId.replaceAll(RegExp(r'[^A-Za-z0-9]'), '').toUpperCase();
   final core = slug.isEmpty
-      ? 'NEET'
+      ? 'JEE'
       : (slug.length <= 8 ? slug : slug.substring(0, 8));
   return 'TPK$core$discountUsd';
 }

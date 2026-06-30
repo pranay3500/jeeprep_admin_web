@@ -1,4 +1,4 @@
-/// Renders email subject/HTML from admin_settings templates (same keys as legacy Functions).
+﻿/// Renders email subject/HTML from admin_settings templates (same keys as legacy Functions).
 abstract final class AdminEmailTemplates {
   static String render(String template, Map<String, String> payload) {
     return template.replaceAllMapped(RegExp(r'\{([a-zA-Z0-9_]+)\}'), (match) {
@@ -17,12 +17,12 @@ abstract final class AdminEmailTemplates {
             : 'Welcome to {appName}';
       case 'updatePublished':
         return isAdmin
-            ? 'NEET Pulse update published: {updateTitle}'
+            ? 'JEE Updates article published: {updateTitle}'
             : '{updateTitle}';
       case 'breakingUpdate':
         return isAdmin
-            ? 'Breaking NEET alert sent: {updateTitle}'
-            : 'Important NEET update: {updateTitle}';
+            ? 'Breaking JEE alert sent: {updateTitle}'
+            : 'Important JEE update: {updateTitle}';
       case 'demoRequestCreated':
         return isAdmin
             ? 'New expected score demo request from {studentName}'
@@ -98,7 +98,7 @@ abstract final class AdminEmailTemplates {
       case 'userRegistered':
         return isAdmin
             ? '<p style="margin:0;font-size:15px;line-height:1.6;"><strong>{userName}</strong> ({email}) registered in the app.</p>'
-            : '<p style="margin:0;font-size:15px;line-height:1.6;">Welcome to TestprepKart NEET Prep. Your account is ready — sign in anytime to continue your admission journey.</p>';
+            : '<p style="margin:0;font-size:15px;line-height:1.6;">Welcome to TestprepKart JEE Prep. Your account is ready â€” sign in anytime to continue your admission journey.</p>';
       case 'updatePublished':
         return isAdmin
             ? '<p style="margin:0;font-size:15px;line-height:1.6;">Update published: <strong>{updateTitle}</strong></p>'
@@ -113,7 +113,7 @@ abstract final class AdminEmailTemplates {
             : '<p style="margin:0;font-size:15px;line-height:1.6;">We received your demo request and will confirm shortly.</p>';
       case 'analysisSessionStatusChanged':
         return isAdmin
-            ? '<p style="margin:0;font-size:15px;line-height:1.6;">Session for <strong>{studentName}</strong> → <strong>{status}</strong> ({sessionDate} {sessionTime})</p>'
+            ? '<p style="margin:0;font-size:15px;line-height:1.6;">Session for <strong>{studentName}</strong> â†’ <strong>{status}</strong> ({sessionDate} {sessionTime})</p>'
             : '<p style="margin:0;font-size:15px;line-height:1.6;">Your session status is <strong>{status}</strong>. Schedule: {sessionDate} {sessionTime}</p>';
       case 'courseInquiryCreated':
         return isAdmin
@@ -137,8 +137,8 @@ abstract final class AdminEmailTemplates {
             : '<p style="margin:0;font-size:15px;line-height:1.6;">Your subscription is active. Thank you!</p>';
       case 'accountDeletionRequested':
         return isAdmin
-            ? '<p style="margin:0;font-size:15px;line-height:1.6;">Deletion requested for <strong>{email}</strong>. Review in Admin → Unsubscribe.</p>'
-            : '<p style="margin:0;font-size:15px;line-height:1.6;">We received your request to delete your TestprepKart NEET app account ({email}). Our team will verify and process it within 30 days. You will receive another email when deletion is completed or if we need to cancel the request.</p>';
+            ? '<p style="margin:0;font-size:15px;line-height:1.6;">Deletion requested for <strong>{email}</strong>. Review in Admin â†’ Unsubscribe.</p>'
+            : '<p style="margin:0;font-size:15px;line-height:1.6;">We received your request to delete your TestprepKart JEE app account ({email}). Our team will verify and process it within 30 days. You will receive another email when deletion is completed or if we need to cancel the request.</p>';
       case 'accountDeletionCompleted':
         return '<p style="margin:0;font-size:15px;line-height:1.6;">Your account deletion request has been completed. Your app account and associated personal data have been removed or anonymized as described on our deletion page. If you did not request this, contact support@testprepkart.com immediately.</p>';
       case 'accountDeletionRejected':

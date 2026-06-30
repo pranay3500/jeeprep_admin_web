@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 
 import '../content_library_pilot_sync.dart';
 import '../content_library_remote_api.dart';
+import '../jee_product_constants.dart';
 import '../services/firestore_db.dart';
 import '../widgets/admin_dialog_save_actions.dart';
 
@@ -160,7 +161,10 @@ class _ContentLibraryImportPageState extends State<ContentLibraryImportPage>
           .get();
       final data = snap.data();
       if (data == null || !mounted) return;
-      _apiUrlController.text = (data['apiUrl'] ?? '').toString();
+      final savedApi = (data['apiUrl'] ?? '').toString().trim();
+      _apiUrlController.text = savedApi.isNotEmpty
+          ? savedApi
+          : JeeProductConstants.contentLibraryTreeApiUrl;
       final nodeTpl = (data['nodeContentPathTemplate'] ?? '').toString().trim();
       if (nodeTpl.isNotEmpty) {
         _nodeContentPathTemplateController.text = nodeTpl;
@@ -740,11 +744,10 @@ class _ContentLibraryImportPageState extends State<ContentLibraryImportPage>
           children: [
             TextField(
               controller: _apiUrlController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Content Library API URL (API 1 — tree)',
-                hintText:
-                    'https://www.testprepkart.com/self-study/api/tree/content/neet/neet-planning',
-                border: OutlineInputBorder(),
+                hintText: JeeProductConstants.contentLibraryTreeApiUrl,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 12),
@@ -2102,7 +2105,7 @@ const _childrenKeys = <String>[
   'modules',
 ];
 
-/// Single-object roots after unwrapping `data` (e.g. NEET planning tree).
+/// Single-object roots after unwrapping `data` (e.g. JEE planning tree).
 const _singletonRootKeys = <String>[
   'exam',
   'tree',

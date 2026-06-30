@@ -1,6 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 
-/// Keep in sync with `neetprep_flutter/lib/core/utils/country_iso_resolver.dart`.
+/// Keep in sync with `jeeprep_flutter/lib/core/utils/country_iso_resolver.dart`.
 abstract final class CountryIsoResolver {
   static String resolveIso2({
     String? countryName,

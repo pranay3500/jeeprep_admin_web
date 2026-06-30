@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -104,7 +104,7 @@ class _UnsubscribePageState extends State<UnsubscribePage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'TestprepKart NEET Admission & Counseling App',
+                        'TestprepKart JEE Admission & Counseling App',
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -117,14 +117,14 @@ class _UnsubscribePageState extends State<UnsubscribePage> {
                       ...const [
                         'Enter the email address you used to register in the app.',
                         'Tap Submit request. Our team will verify your identity and process deletion within 30 days.',
-                        'You may also sign in to the app and use Profile → Security → Sign out, then contact support if you need help.',
+                        'You may also sign in to the app and use Profile â†’ Security â†’ Sign out, then contact support if you need help.',
                       ].map(
                         (s) => Padding(
                           padding: const EdgeInsets.only(bottom: 6),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('• ', style: TextStyle(height: 1.45)),
+                              const Text('â€¢ ', style: TextStyle(height: 1.45)),
                               Expanded(
                                 child: Text(
                                   s,
