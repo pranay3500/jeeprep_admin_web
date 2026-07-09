@@ -222,7 +222,7 @@ class AnalysisSessionsPage extends StatelessWidget {
     int duration = ((_endFrom(data)?.difference(selectedDate).inMinutes ?? 60))
         .clamp(30, 180);
     final selectedSubjects = _subjectsFrom(data).toSet();
-    const subjectOptions = ['Physics', 'Chemistry', 'Biology'];
+    const subjectOptions = ['Physics', 'Chemistry', 'Math'];
 
     await showDialog<void>(
       context: context,

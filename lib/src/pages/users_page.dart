@@ -25,6 +25,8 @@ class _UsersPageState extends State<UsersPage> {
   _UserFilter _filter = _UserFilter.all;
   DateTime? _dateFrom;
   DateTime? _dateTo;
+  bool _autoAcknowledgedThisVisit = false;
+  final Set<String> _optimisticallySeenUserIds = {};
 
   CollectionReference<Map<String, dynamic>> get _users =>
       FirestoreDb.instance.collection('users');
@@ -34,20 +36,41 @@ class _UsersPageState extends State<UsersPage> {
   @override
   void initState() {
     super.initState();
-    unawaited(_markNewUsersSeen());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(_markNewUsersSeen());
+    });
   }
 
   Future<void> _markNewUsersSeen() async {
+    if (_autoAcknowledgedThisVisit) return;
+    _autoAcknowledgedThisVisit = true;
     try {
-      final snap =
-          await _users.where('adminUnread', isEqualTo: true).limit(500).get();
+      final snap = await _users
+          .where('adminUnread', isEqualTo: true)
+          .limit(500)
+          .get()
+          .timeout(const Duration(seconds: 30));
       if (snap.docs.isEmpty) return;
-      final batch = FirestoreDb.instance.batch();
-      for (final doc in snap.docs) {
-        batch.update(doc.reference, {'adminUnread': false});
+      final ids = snap.docs.map((d) => d.id).toList();
+      if (mounted) {
+        setState(() => _optimisticallySeenUserIds.addAll(ids));
       }
-      await batch.commit();
+      final batch = FirestoreDb.instance.batch();
+      final admin = FirebaseAuth.instance.currentUser;
+      for (final doc in snap.docs) {
+        batch.update(doc.reference, {
+          'adminUnread': false,
+          'adminSeenAt': FieldValue.serverTimestamp(),
+          'updatedAt': FieldValue.serverTimestamp(),
+          if (admin != null) 'updatedBy': admin.uid,
+        });
+      }
+      await batch.commit().timeout(const Duration(seconds: 30));
     } catch (e) {
+      _autoAcknowledgedThisVisit = false;
+      if (mounted) {
+        setState(() => _optimisticallySeenUserIds.clear());
+      }
       debugPrint('Failed to mark new users seen: $e');
     }
   }
@@ -806,7 +829,9 @@ class _UsersPageState extends State<UsersPage> {
                                     final flag = _flagEmojiFromIso2(iso2);
                                     final role = (u['role'] ?? 'user').toString();
                                     final email = (u['email'] ?? '-').toString();
-                                    final isNewSignup = u['adminUnread'] == true;
+                                    final isNewSignup =
+                                        !_optimisticallySeenUserIds.contains(doc.id) &&
+                                            u['adminUnread'] == true;
                                     return DataRow(
                                       color: WidgetStateProperty.resolveWith(
                                         (_) => isNewSignup

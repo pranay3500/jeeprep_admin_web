@@ -20,6 +20,8 @@
 | 2026-06-10 | JEE rebrand sweep | **Done** | CMS defaults, nav titles, courses/webinars/timeline templates, settings/email copy → JEE |
 | 2026-06-10 | Exam Date permission-denied | **Fixed** | Root cause: old admin used Firestore DB `default` (NEET); JEE uses `(default)`. Rules re-released to `(default)` DB |
 | 2026-06-10 | Users nav unread dot | **Done** | Mobile signup sets `users.adminUnread`; admin nav red dot on **Users**; clears when Users page opens |
+| 2026-07-09 | Users unread red-dot hardening | **Done** | Matched NEET admin behavior: post-frame auto-ack + optimistic UI clear + batched `adminUnread=false` with timeout and audit fields (`adminSeenAt`, `updatedAt`, `updatedBy`) to prevent sticky Users badge/highlight. |
+| 2026-07-09 | Eligibility logic rebase to DASA/CIWG | **In Progress** | `eligibility_tool_page.dart` default rule IDs/messages moved from legacy NEET/NRI flags to DASA/CIWG flags (R1–R9 + CIWG double-tag advisory). Default logic JSON now models DASA 2026 cutoff/score/CIWG-country configuration and severity buckets consumed by JEE app checker. |
 | 2026-06-10 | Search engine blocking | **Done** | `web/robots.txt` (Disallow all), `index.html` meta robots, `.htaccess` `X-Robots-Tag` for jeeappadmin.satlas.org |
 | | Rebuild + upload admin | **Optional** | If pulling latest JEE branding strings |
 
